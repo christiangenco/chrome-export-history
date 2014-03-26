@@ -7,8 +7,8 @@ var download = function(format){
 
   chrome.history.search({
     'text': '', 
-    'maxResults': 100, 
-    // 'maxResults': 100000, 
+    // 'maxResults': 100, 
+    'maxResults': 100000, 
     'startTime': 0
   }, function(res){
     window.res = res;
