@@ -21,11 +21,18 @@ var download = function(format){
 
       // header row
       var keys = Object.keys(res[0]);
-      append(keys.join(","));
+      append("formattedLastVisitTime," + keys.join(","));
 
       var row;
+      var time;
       for(var i=0; i<res.length; i++){
         row = "";
+
+        // convert time for excel
+        time = new Date(res[i]["lastVisitTime"]);
+        formatted = time.toISOString().replace('T', ' ').replace(/\.\d+Z/, '');
+        row += formatted + ",";
+
         for(var j=0; j<keys.length; j++){
           row += JSON.stringify(res[i][keys[j]]);
           if(j !== keys.length-1) row += ",";
