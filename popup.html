@@ -26,34 +26,24 @@
       }
     </style>
     <link rel="stylesheet" type="text/css" href="buttons.css">
-
+    <script src="konami.js"></script>
+    <script src="whoa.js"></script>
     <script src="popup.js"></script>
   </head>
   <body>
-    <h3>Export History</h3>
+    <h3 id="title">E<span id="titlex">x</span>port History</h3>
     <div id="content">
       <a href="#" id="json" class="button button-rounded button-flat-action">history.json</a>
-      <a href="#" id="csv" class="button button-rounded button-flat-action">history.csv</a>
+      <a href="#" id="csv" class="button button-rounded button-flat-caution">history.csv</a>
     </div>
-
-    <hr/>
 
     <a href="https://github.com/christiangenco/chrome-export-history" target="_blank"><img style="position: absolute; top: 0; right: 0; border: 0; height: 70%;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
 
-    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" style="display: inline">
-      <input type="hidden" name="cmd" value="_donations">
-      <input type="hidden" name="business" value="christian.genco@gmail.com">
-      <input type="hidden" name="lc" value="US">
-      <input type="hidden" name="item_name" value="Export History">
-      <input type="hidden" name="no_note" value="0">
-      <input type="hidden" name="currency_code" value="USD">
-      <input type="hidden" name="bn" value="PP-DonationsBF:btn_donate_LG.gif:NonHostedGuest">
-      <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-      <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-    </form>
+    <br />
 
-    <a href="mailto:14vRZ4uqmz2bN1DKxjJP1B8G6w9bAjFfnF@emailtipbot.com" style="font-size: 100%">14vRZ4uqmz2bN1DKxjJP1B8G6w9bAjFfnF</a>
-    
+    <p id="thankyou" style="display: none">
+      Thank you for registering Export History :) Email me at <a href="mailto:christian.genco@gmail.com">christian.genco@gmail.com</a> if you run into any problems!
+    </p>
 
     <div id="data"></div>
   </body>
