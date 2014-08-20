@@ -23,7 +23,7 @@ var append = function(text){
 }
 
 var download = function(format){
-  if(format == "csv" && localStorage['registered']){
+  if(format == "csv" && !localStorage['registered']){
     // not registered
     chrome.tabs.create({url: "http://gen.co/exporthistory"});
     return;
