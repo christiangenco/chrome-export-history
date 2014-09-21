@@ -1,17 +1,24 @@
 // localStorage.removeItem('registered');
 
-var register = function(){
-  localStorage['registered'] = true;
-
-  window.csvButton.className = 
-    window.csvButton.className.replace('caution', 'action');
+var unlocked = false;
+var unlock = function(){
+  unlocked = true;
+  window.csvButton.className = window.csvButton.className.replace('caution', 'action');
   document.getElementById("thankyou").style.display = 'block';
+  document.getElementById("buy").style.display      = 'none';
 }
+
+getLicense(function(license, error){
+  console.log("got license: ");
+  if(!error && license && license.result && license.accessLevel === "FULL"){
+    unlock();
+  }
+});
 
 var easter_egg = new Konami();
 easter_egg.code = function(){
-  if(!localStorage['registered']){
-    register();
+  if(!unlocked){
+    unlock();
   }else{
     whoa();
   }
@@ -23,18 +30,19 @@ var append = function(text){
 }
 
 var download = function(format){
-  if(format == "csv" && !localStorage['registered']){
+  if(format == "csv" && !unlocked){
     // not registered
-    chrome.tabs.create({url: "http://gen.co/exporthistory"});
+    // show link to purchase
+    chrome.tabs.create({url: "https://chrome.google.com/webstore/detail/export-history/hcohnnbbiggngobheobhdipbgmcbelhh"});
     return;
   }
 
   document.getElementById('content').innerText = "preparing file...";
 
   chrome.history.search({
-    'text': '', 
-    // 'maxResults': 100, 
-    'maxResults': 100000, 
+    'text': '',
+    // 'maxResults': 100,
+    'maxResults': 1000000,
     'startTime': 0
   }, function(res){
     window.res = res;
@@ -105,8 +113,8 @@ document.addEventListener('DOMContentLoaded', function () {
     download('csv');
   };
 
-  document.getElementById('titlex').onclick = register;
+  // document.getElementById('titlex').onclick = register;
 
-  if(localStorage['registered']) register();
+  // if(localStorage['registered']) register();
 });
 
