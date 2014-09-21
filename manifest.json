@@ -3,11 +3,21 @@
 
   "name": "Export History",
   "description": "Download your full chrome history in Excel-readable csv and json",
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAgbRhEYSFuFFubsDQmMiLL7gi+zqx+oy4cCZs0gaLK6D1LmJAMWzDrjgZ9OTXHjvqLnqely7ZLyzoPRwq8CspZdOiAukOI/Df/4crnJ+vqiJtjxT6/pkY/XCV04cMXcxONY7rsJi7GuhtsQXFG2qO/I05L00Zdh+VMv0d8vrikklh2huQAEEtJyuFN6Wzdj5NP0zJJsBDQJ1dAUF26920438LSxpDtdVCX7nmHc2M76SyFeZzy8Q/9cU8uKbS0GiCm4oSIR1L4KsAXvYjnv9xC3eE5VHrtD+LEoo2mdiRvvC4KJRHZj8m8s34d8fwomKZH2P70jlB9xlQz0RgWWEp5wIDAQAB",
   "version": "1.2",
 
   "permissions": [
-    "history"
+    "history",
+    "identity",
+    "https://www.googleapis.com/"
   ],
+  "oauth2": {
+    "client_id": "650566817477-0080kv7ltdklamk1qf27rpjdrpa964qm.apps.googleusercontent.com",
+    "scopes": [
+      // "https://www.googleapis.com/auth/plus.login",
+      "https://www.googleapis.com/auth/chromewebstore.readonly"
+    ]
+  },
   "browser_action": {
     "default_icon": "icon.png",
     "default_popup": "popup.html"
