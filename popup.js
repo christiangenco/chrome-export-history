@@ -50,30 +50,31 @@ var download = function(format){
     var text, filename;
 
     // put the data in a hidden div so chrome doesn't crash
-    if(format==="csv"){
-      if(localStorage['registered']){
-        filename = "history.csv";
+    if(format === "csv"){
+      filename = "history.csv";
 
-        // header row
-        var keys = Object.keys(res[0]);
-        append("formattedLastVisitTime," + keys.join(","));
+      // header row
+      var keys = Object.keys(res[0]);
+      append("formattedLastVisitTime," + keys.join(","));
 
-        var row;
-        var time;
-        for(var i=0; i<res.length; i++){
-          row = "";
+      var row, time, value;
+      for(var i=0; i<res.length; i++){
+        row = "";
 
-          // convert time for excel
-          time = new Date(res[i]["lastVisitTime"]);
-          formatted = time.toISOString().replace('T', ' ').replace(/\.\d+Z/, '');
-          row += formatted + ",";
+        // convert time for excel
+        time = new Date(res[i]["lastVisitTime"]);
+        formatted = time.toISOString().replace('T', ' ').replace(/\.\d+Z/, '');
+        row += formatted + ",";
 
-          for(var j=0; j<keys.length; j++){
-            row += JSON.stringify(res[i][keys[j]]);
-            if(j !== keys.length-1) row += ",";
-          }
-          append("\n" + row);
+        for(var j=0; j<keys.length; j++){
+          value = res[i][keys[j]].toString();
+          value = value.replace(/"/g, '""');
+          if(value.search(/("|,|\n)/g) >= 0)
+            value = '"' + value + '"';
+          row += value;
+          if(j !== keys.length-1) row += ",";
         }
+        append("\n" + row);
       }
     }else{
       filename = "history.json";
@@ -100,7 +101,6 @@ var download = function(format){
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-  console.dir(localStorage['registered']);
   window.data       = document.getElementById('data');
   window.jsonButton = document.getElementById('json');
   window.csvButton  = document.getElementById('csv');
